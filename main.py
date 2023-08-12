@@ -5,6 +5,7 @@ import wikipedia
 import webbrowser
 
 from config import *
+from queries.browserQueries import openWebsite
 
 # setup
 auraEngine = pyttsx3.init('sapi5')
@@ -72,7 +73,7 @@ if __name__ == "__main__":
         # websites
         elif 'open youtube' in query:
             speak("Here you go")
-            webbrowser.open('https://www.youtube.com')
+            openWebsite(youtube)
         elif 'open stack overflow' in query:
             speak("Happy coding")
-            webbrowser.open('https://www.stackoverflow.com')
+            openWebsite(stackoverflow)
