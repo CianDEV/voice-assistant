@@ -3,6 +3,8 @@ import speech_recognition as sr
 import datetime
 import wikipedia
 import webbrowser
+import pyjokes
+import time
 
 from config import *
 from queries.browserQueries import openWebsite
@@ -39,7 +41,7 @@ def takeCommand():
         print("Listening...")
         r.pause_threshold = 1
         audio = r.listen(source)
-  
+
     try:
         print("Recognizing...")   
         query = r.recognize_google(audio, language ='en-IE')
@@ -60,16 +62,22 @@ if __name__ == "__main__":
         query = takeCommand().lower()
 
         # basic query searching
-        if 'wikipedia' in query:
+        if "wikipedia" in query:
             speak('Searching Wikipedia...')
             query = query.replace("wikipedia", "")
             results = wikipedia.summary(query, sentences = 3)
             speak("According to Wikipedia")
+            print(results)
             speak(results)
         # fun bonus
         elif 'thank you' in query:
             speak('your welcome !')
-
+        elif "stop listening" in query:
+            speak("How many seconds would you like me to stop listening")
+            answer = takeCommand().lower()
+            answer = int(answer)
+            time.sleep(answer)
+            speak('Listening again...')
         # websites
         elif 'open youtube' in query:
             speak("Here you go")
@@ -77,3 +85,12 @@ if __name__ == "__main__":
         elif 'open stack overflow' in query:
             speak("Happy coding")
             openWebsite(stackoverflow)
+        elif 'open github' in query:
+            speak("Opening github")
+            openWebsite(github)
+        elif 'tell me a joke' in query:
+            speak("Let me see")
+            joke = pyjokes.get_joke()
+            speak(joke)
+        else: 
+            pass

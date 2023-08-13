@@ -1,4 +1,3 @@
-import wikipedia
 import webbrowser
 
 def openWebsite(website:list):
@@ -6,3 +5,6 @@ def openWebsite(website:list):
         webbrowser.open(website[1])
     elif website[0] == "stack overflow":
         webbrowser.open(website[1])
+    elif website[0] == "github":
+        webbrowser.open(website[1])
+        
