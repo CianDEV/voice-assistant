@@ -7,7 +7,7 @@ import pyjokes
 import time
 
 from config import *
-from queries.browserQueries import openWebsite
+from queries.browserQueries import openWebsite, searchWikipedia
 
 # setup
 auraEngine = pyttsx3.init('sapi5')
@@ -64,8 +64,7 @@ if __name__ == "__main__":
         # basic query searching
         if "wikipedia" in query:
             speak('Searching Wikipedia...')
-            query = query.replace("wikipedia", "")
-            results = wikipedia.summary(query, sentences = 3)
+            results = searchWikipedia(query)
             speak("According to Wikipedia")
             print(results)
             speak(results)
